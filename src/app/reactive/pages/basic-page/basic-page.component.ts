@@ -15,10 +15,10 @@ export class BasicPageComponent {
   });*/
 
   /* formcontrol(default_value, sync_validator, async_validator) -> FORMBUILDER */
-  public myForm: FormGroup = this.fb.group({
+  public myForm: FormGroup = this.fb.nonNullable.group({
     name:       [ '', [Validators.required, Validators.minLength(3)] ],
-    price:      [ 0, [Validators.required, Validators.min(0)] ],
-    inStorage:  [ 0, [Validators.required, Validators.min(0)] ]
+    price:      [ 0,  [Validators.required, Validators.min(0)] ],
+    inStorage:  [ 0,  [Validators.required, Validators.min(0)] ]
   })
 
   constructor( private fb: FormBuilder ) {}
@@ -28,5 +28,6 @@ export class BasicPageComponent {
       return;
 
     console.log(this.myForm.value);
+    this.myForm.reset();
   }
 }
